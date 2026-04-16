@@ -1,0 +1,107 @@
+<div class="voice-messages-page">
+  <div class="page-header">
+    <h1>{{ t('voiceMessages.title') }}</h1>
+    <p>{{ t('voiceMessages.description') }}</p>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i class="pi pi-microphone"></i>
+      </div>
+      <div class="stat-content">
+        <span class="stat-value">1,234</span>
+        <span class="stat-label">Total Messages</span>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon success">
+        <i class="pi pi-check-circle"></i>
+      </div>
+      <div class="stat-content">
+        <span class="stat-value">892</span>
+        <span class="stat-label">Delivered</span>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon warning">
+        <i class="pi pi-clock"></i>
+      </div>
+      <div class="stat-content">
+        <span class="stat-value">156</span>
+        <span class="stat-label">Pending</span>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon danger">
+        <i class="pi pi-times-circle"></i>
+      </div>
+      <div class="stat-content">
+        <span class="stat-value">42</span>
+        <span class="stat-label">Failed</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div class="content-card">
+      <div class="card-header">
+        <h3>Recent Messages</h3>
+        <button pButton label="View All" class="p-button-text p-button-sm"></button>
+      </div>
+      <div class="card-body">
+        <div class="message-item">
+          <div class="message-avatar">
+            <i class="pi pi-user"></i>
+          </div>
+          <div class="message-info">
+            <span class="message-name">John Doe</span>
+            <span class="message-preview">Hello, this is a test voice message...</span>
+          </div>
+          <div class="message-time">2 min ago</div>
+        </div>
+        <div class="message-item">
+          <div class="message-avatar">
+            <i class="pi pi-user"></i>
+          </div>
+          <div class="message-info">
+            <span class="message-name">Jane Smith</span>
+            <span class="message-preview">Thanks for the update!</span>
+          </div>
+          <div class="message-time">15 min ago</div>
+        </div>
+        <div class="message-item">
+          <div class="message-avatar">
+            <i class="pi pi-user"></i>
+          </div>
+          <div class="message-info">
+            <span class="message-name">Mike Johnson</span>
+            <span class="message-preview">Please call me back when possible</span>
+          </div>
+          <div class="message-time">1 hour ago</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-header">
+        <h3>Quick Actions</h3>
+      </div>
+      <div class="card-body">
+        <div class="action-buttons">
+          <button pButton icon="pi pi-send" label="Send Message" class="p-button-primary"></button>
+          <button pButton icon="pi pi-upload" label="Import CSV" class="p-button-outlined"></button>
+          <button
+            pButton
+            icon="pi pi-chart-bar"
+            label="Analytics"
+            class="p-button-outlined"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

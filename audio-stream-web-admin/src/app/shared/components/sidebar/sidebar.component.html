@@ -1,0 +1,56 @@
+<aside class="sidebar" [class.collapsed]="collapsed()">
+  <div class="sidebar-header">
+    <div class="logo" *ngIf="!collapsed()">
+      <i class="pi pi-microphone logo-icon"></i>
+      <span class="logo-text">AudioStream</span>
+    </div>
+    <button
+      pButton
+      [icon]="collapsed() ? 'pi pi-angle-right' : 'pi pi-angle-left'"
+      class="p-button-text p-button-rounded toggle-btn"
+      (click)="toggleSidebar()"
+      [attr.aria-label]="t('sidebar.toggle')"
+    ></button>
+  </div>
+
+  <nav class="sidebar-nav">
+    <ul class="nav-list">
+      @for (item of menuItems; track item.routerLink) {
+        <li class="nav-item">
+          <a [routerLink]="item.routerLink" routerLinkActive="active" class="nav-link">
+            <div class="nav-icon-wrapper">
+              <i [class]="item.icon" class="nav-icon"></i>
+            </div>
+            @if (!collapsed()) {
+              <span class="nav-label">{{ item.label }}</span>
+            }
+          </a>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="footer-actions" [class.collapsed]="collapsed()">
+      <button
+        pButton
+        [icon]="darkMode() ? 'pi pi-sun' : 'pi pi-moon'"
+        class="p-button-text p-button-rounded footer-btn"
+        (click)="toggleDarkMode()"
+        [attr.aria-label]="darkMode() ? t('header.lightMode') : t('header.darkMode')"
+        [pTooltip]="darkMode() ? t('header.lightMode') : t('header.darkMode')"
+        tooltipPosition="top"
+      ></button>
+
+      <button
+        pButton
+        icon="pi pi-globe"
+        class="p-button-text p-button-rounded footer-btn"
+        (click)="toggleLanguage()"
+        [attr.aria-label]="t('header.language')"
+        [pTooltip]="t('header.language')"
+        tooltipPosition="top"
+      ></button>
+    </div>
+  </div>
+</aside>

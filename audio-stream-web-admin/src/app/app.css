@@ -1,0 +1,36 @@
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background: var(--surface-ground);
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 260px;
+  padding: 1.5rem;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--surface-ground);
+  min-height: 100vh;
+}
+
+.main-content.collapsed {
+  margin-left: 72px;
+}
+
+:host-context(.dark) .app-container {
+  background: var(--surface-ground);
+}
+
+:host-context(.dark) .main-content {
+  background: var(--surface-ground);
+}
+
+@media (prefers-color-scheme: dark) {
+  .app-container {
+    background: var(--surface-ground);
+  }
+
+  .main-content {
+    background: var(--surface-ground);
+  }
+}

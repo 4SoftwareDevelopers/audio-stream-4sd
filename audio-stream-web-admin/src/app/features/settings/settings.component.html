@@ -1,0 +1,98 @@
+<div class="settings-page">
+  <div class="page-header">
+    <h1>{{ t('settings.title') }}</h1>
+    <p>{{ t('settings.description') }}</p>
+  </div>
+
+  <div class="settings-grid">
+    <div class="settings-card">
+      <div class="card-header">
+        <div class="header-icon">
+          <i class="pi pi-globe"></i>
+        </div>
+        <div class="header-text">
+          <h3>{{ t('settings.language') }}</h3>
+          <p>Select your preferred language</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <p-select
+          [options]="languages"
+          [(ngModel)]="selectedLanguage"
+          (onChange)="onLanguageChange($event)"
+          optionLabel="label"
+          optionValue="value"
+          styleClass="language-dropdown"
+        ></p-select>
+      </div>
+    </div>
+
+    <div class="settings-card">
+      <div class="card-header">
+        <div class="header-icon theme">
+          <i class="pi pi-palette"></i>
+        </div>
+        <div class="header-text">
+          <h3>{{ t('settings.theme') }}</h3>
+          <p>Choose your preferred theme</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="theme-options">
+          <div
+            class="theme-option"
+            [class.active]="selectedTheme() === 'light'"
+            (click)="selectTheme('light')"
+          >
+            <i class="pi pi-sun"></i>
+            <span>Light</span>
+          </div>
+          <div
+            class="theme-option"
+            [class.active]="selectedTheme() === 'dark'"
+            (click)="selectTheme('dark')"
+          >
+            <i class="pi pi-moon"></i>
+            <span>Dark</span>
+          </div>
+          <div
+            class="theme-option"
+            [class.active]="selectedTheme() === 'system'"
+            (click)="selectTheme('system')"
+          >
+            <i class="pi pi-desktop"></i>
+            <span>System</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-card">
+      <div class="card-header">
+        <div class="header-icon info">
+          <i class="pi pi-info-circle"></i>
+        </div>
+        <div class="header-text">
+          <h3>About</h3>
+          <p>Application information</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="about-info">
+          <div class="info-row">
+            <span class="info-label">Version</span>
+            <span class="info-value">1.0.0</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Build</span>
+            <span class="info-value">2024.01.001</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Framework</span>
+            <span class="info-value">Angular 21</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

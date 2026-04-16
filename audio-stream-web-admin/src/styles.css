@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+@import 'tailwindcss-primeui';
+@import 'primeicons/primeicons.css';
+
+:root {
+  --primary-color: #0287d9;
+  --primary-color-text: #ffffff;
+  --primary-color-hover: #0177c2;
+  --primary-color-active: #015a9e;
+}

@@ -1,0 +1,59 @@
+<div class="blacklist-page">
+  <div class="page-header">
+    <div class="header-content">
+      <h1>{{ t('blacklist.title') }}</h1>
+      <p>{{ t('blacklist.description') }}</p>
+    </div>
+    <button pButton icon="pi pi-plus" label="Add to Blacklist" class="p-button-primary"></button>
+  </div>
+
+  <div class="content-card">
+    <div class="table-header">
+      <h3>Blocked Contacts</h3>
+      <div class="table-actions">
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input pInputText placeholder="Search..." class="search-input" />
+        </span>
+      </div>
+    </div>
+
+    <p-table
+      [value]="blockedContacts"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      styleClass="p-datatable-sm"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Phone Number</th>
+          <th>Name</th>
+          <th>Blocked Date</th>
+          <th>Reason</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-contact>
+        <tr>
+          <td>
+            <span class="phone-number">{{ contact.phone }}</span>
+          </td>
+          <td>{{ contact.name }}</td>
+          <td>{{ contact.blockedDate }}</td>
+          <td>{{ contact.reason }}</td>
+          <td>
+            <button
+              pButton
+              icon="pi pi-trash"
+              class="p-button-text p-button-danger p-button-sm"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5" class="empty-message">No blocked contacts found.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
