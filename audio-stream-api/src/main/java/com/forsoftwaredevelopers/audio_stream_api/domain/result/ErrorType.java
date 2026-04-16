@@ -6,5 +6,6 @@ public enum ErrorType {
     CONFLICT,
     UNAUTHORIZED,
     FORBIDDEN,
-    INTERNAL
+    INTERNAL,
+    TOO_MANY_REQUESTS
 }

@@ -1,4 +1,4 @@
-package com.forsoftwaredevelopers.audio_stream_api.infraestructure.web.admin;
+package com.forsoftwaredevelopers.audio_stream_api.infraestructure.web.admin.controller;
 
 import java.time.Instant;
 

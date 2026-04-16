@@ -1,4 +1,4 @@
-package com.forsoftwaredevelopers.audio_stream_api.infraestructure.web.admin;
+package com.forsoftwaredevelopers.audio_stream_api.infraestructure.web.admin.controller;
 
 import com.forsoftwaredevelopers.audio_stream_api.infraestructure.persistense.repository.VoiceMessageAudioJPARepository;
 import com.forsoftwaredevelopers.audio_stream_api.infraestructure.persistense.repository.VoiceMessageJPARepository;

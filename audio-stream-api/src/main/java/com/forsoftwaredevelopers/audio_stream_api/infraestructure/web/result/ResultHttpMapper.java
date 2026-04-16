@@ -25,6 +25,7 @@ public class ResultHttpMapper {
             case UNAUTHORIZED -> HttpStatus.UNAUTHORIZED;
             case FORBIDDEN -> HttpStatus.FORBIDDEN;
             case INTERNAL -> HttpStatus.INTERNAL_SERVER_ERROR;
+            case TOO_MANY_REQUESTS -> HttpStatus.TOO_MANY_REQUESTS;
         };
     }
 }

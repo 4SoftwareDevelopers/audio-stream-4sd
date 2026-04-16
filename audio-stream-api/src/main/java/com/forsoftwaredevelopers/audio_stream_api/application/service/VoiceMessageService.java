@@ -16,13 +16,13 @@ import com.forsoftwaredevelopers.audio_stream_api.application.usecase.PlayVoiceM
 import com.forsoftwaredevelopers.audio_stream_api.application.usecase.ReceiveVoiceMessageUseCase;
 import com.forsoftwaredevelopers.audio_stream_api.application.usecase.RejectVoiceMessageUseCase;
 import com.forsoftwaredevelopers.audio_stream_api.domain.model.VoiceMessage;
+import com.forsoftwaredevelopers.audio_stream_api.domain.port.AudioPlayPort;
 import com.forsoftwaredevelopers.audio_stream_api.domain.port.AudioStoragePort;
 import com.forsoftwaredevelopers.audio_stream_api.domain.port.AudioValidationPort;
 import com.forsoftwaredevelopers.audio_stream_api.domain.port.VoiceMessageRepository;
 import com.forsoftwaredevelopers.audio_stream_api.domain.result.DomainError;
 import com.forsoftwaredevelopers.audio_stream_api.domain.result.ErrorType;
 import com.forsoftwaredevelopers.audio_stream_api.domain.result.Result;
-import com.forsoftwaredevelopers.audio_stream_api.infraestructure.web.admin.AudioPlayService;
 
 @Service
 public class VoiceMessageService implements ReceiveVoiceMessageUseCase, RejectVoiceMessageUseCase, 
@@ -35,17 +35,17 @@ public class VoiceMessageService implements ReceiveVoiceMessageUseCase, RejectVo
     private final VoiceMessageRepository voiceMessageRepository;
     private final AudioValidationPort audioValidationPort;
     private final AudioStoragePort audioStoragePort;
-    private final AudioPlayService audioPlayService;
+    private final AudioPlayPort audioPlayPort;
 
     public VoiceMessageService(
             VoiceMessageRepository voiceMessageRepository,
             AudioValidationPort audioValidationPort,
             AudioStoragePort audioStoragePort,
-            AudioPlayService audioPlayService) {
+            AudioPlayPort audioPlayPort) {
         this.voiceMessageRepository = voiceMessageRepository;
         this.audioValidationPort = audioValidationPort;
         this.audioStoragePort = audioStoragePort;
-        this.audioPlayService = audioPlayService;
+        this.audioPlayPort = audioPlayPort;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class VoiceMessageService implements ReceiveVoiceMessageUseCase, RejectVo
 
         var audioResult = voiceMessageRepository.findAudioByVoiceMessageId(command.voiceMessageId());
         if (audioResult != null) {
-            audioPlayService.playAudio(command.voiceMessageId(), audioResult.storageKey());
+            audioPlayPort.playAudio(command.voiceMessageId(), audioResult.storageKey());
         }
 
         Result<Void> result = voiceMessage.markAsPlayed();
