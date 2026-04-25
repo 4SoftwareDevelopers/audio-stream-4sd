@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS voice_message (
-  id         UUID PRIMARY KEY,
+  id         VARCHAR(64) PRIMARY KEY,
   stream_id  VARCHAR(64) DEFAULT NULL,
   username   VARCHAR(64) NOT NULL,
   email      VARCHAR(128) NOT NULL,
