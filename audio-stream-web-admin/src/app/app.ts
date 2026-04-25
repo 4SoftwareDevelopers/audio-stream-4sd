@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
+import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,11 @@ import { SidebarComponent } from './shared/components/sidebar/sidebar.component'
 })
 export class App {
   protected sidebarCollapsed = signal(false);
+  private authService = inject(AuthService);
+
+  get isAuthenticated(): boolean {
+    return this.authService.isAuthenticated();
+  }
 
   onSidebarCollapsedChange(collapsed: boolean): void {
     this.sidebarCollapsed.set(collapsed);

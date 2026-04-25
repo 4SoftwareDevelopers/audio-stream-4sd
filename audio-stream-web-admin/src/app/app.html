@@ -1,5 +1,7 @@
 <div class="app-container">
-  <app-sidebar (collapsedChange)="onSidebarCollapsedChange($event)"></app-sidebar>
+  @if (isAuthenticated) {
+    <app-sidebar (collapsedChange)="onSidebarCollapsedChange($event)"></app-sidebar>
+  }
 
   <main class="main-content" [class.collapsed]="sidebarCollapsed()">
     <router-outlet></router-outlet>
