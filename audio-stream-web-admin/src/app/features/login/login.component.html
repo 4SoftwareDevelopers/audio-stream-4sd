@@ -1,0 +1,44 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <i class="pi pi-microphone logo-icon"></i>
+      <h1>AudioStream</h1>
+    </div>
+
+    @if (error) {
+      <p-message severity="error" [text]="error"></p-message>
+    }
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-field">
+        <label for="username">{{ t('login.username') }}</label>
+        <input
+          pInputText
+          id="username"
+          [(ngModel)]="username"
+          name="username"
+          [placeholder]="t('login.username')"
+        />
+      </div>
+
+      <div class="form-field">
+        <label for="password">{{ t('login.password') }}</label>
+        <p-password
+          id="password"
+          [(ngModel)]="password"
+          name="password"
+          [feedback]="false"
+          [toggleMask]="true"
+        ></p-password>
+      </div>
+
+      <button
+        pButton
+        type="submit"
+        [label]="t('login.submit')"
+        [loading]="loading"
+        class="login-btn"
+      ></button>
+    </form>
+  </div>
+</div>
