@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { authConfig } from '../config/auth.config';
@@ -19,6 +19,9 @@ export interface AuthResponse {
 })
 export class AuthService {
   private http = inject(HttpClient);
+  private _isAuthenticated = signal(!!localStorage.getItem(authConfig.tokenKey));
+
+  isAuthenticated = this._isAuthenticated.asReadonly();
 
   login(request: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
@@ -27,6 +30,7 @@ export class AuthService {
     ).pipe(
       tap(response => {
         localStorage.setItem(authConfig.tokenKey, response.jwt);
+        this._isAuthenticated.set(true);
         if (response.refreshToken) {
           localStorage.setItem(authConfig.refreshTokenKey, response.refreshToken);
         }
@@ -37,10 +41,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem(authConfig.tokenKey);
     localStorage.removeItem(authConfig.refreshTokenKey);
-  }
-
-  isAuthenticated(): boolean {
-    return !!localStorage.getItem(authConfig.tokenKey);
+    this._isAuthenticated.set(false);
   }
 
   getToken(): string | null {

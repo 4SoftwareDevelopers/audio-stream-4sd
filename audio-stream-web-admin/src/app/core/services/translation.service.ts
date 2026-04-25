@@ -10,6 +10,7 @@ const translations: Record<string, Record<string, string>> = {
   'header.darkMode': { en: 'Dark Mode', es: 'Modo Oscuro' },
   'header.lightMode': { en: 'Light Mode', es: 'Modo Claro' },
   'header.language': { en: 'Language', es: 'Idioma' },
+  'header.logout': { en: 'Logout', es: 'Cerrar Sesión' },
   'voiceMessages.title': { en: 'Voice Messages', es: 'Mensajes de Voz' },
   'voiceMessages.description': {
     en: 'Manage your voice messages',
