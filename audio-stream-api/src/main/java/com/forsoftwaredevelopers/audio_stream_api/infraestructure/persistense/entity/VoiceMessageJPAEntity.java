@@ -35,7 +35,7 @@ public class VoiceMessageJPAEntity {
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -63,7 +63,7 @@ public class VoiceMessageJPAEntity {
         return updatedAt;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

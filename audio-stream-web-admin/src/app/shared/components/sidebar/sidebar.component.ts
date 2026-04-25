@@ -1,38 +1,32 @@
-import { Component, signal, Output, EventEmitter } from '@angular/core';
+import { Component, signal, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { TooltipModule } from 'primeng/tooltip';
-import { TranslationService } from '../../../core/services/translation.service';
+import { AppSettingsService } from '../../../core/services/app-settings.service';
 import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-sidebar',
   imports: [CommonModule, RouterModule, ButtonModule, MenuModule, TooltipModule],
-  providers: [TranslationService],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
 })
 export class SidebarComponent {
   @Output() collapsedChange = new EventEmitter<boolean>();
 
-  collapsed = signal(false);
-  darkMode = signal(false);
+  private appSettings = inject(AppSettingsService);
 
-  private translationService: TranslationService;
+  collapsed = signal(false);
+  darkMode = this.appSettings.darkMode;
 
   constructor() {
-    this.translationService = new TranslationService();
-    if (typeof localStorage !== 'undefined') {
-      const saved = localStorage.getItem('darkMode');
-      this.darkMode.set(saved === 'true');
-      this.applyDarkMode();
-    }
+    this.appSettings.translationService;
   }
 
   getLanguage() {
-    return this.translationService.currentLanguage;
+    return this.appSettings.translationService.currentLanguage;
   }
 
   toggleSidebar(): void {
@@ -41,34 +35,15 @@ export class SidebarComponent {
   }
 
   toggleDarkMode(): void {
-    const newValue = !this.darkMode();
-    this.darkMode.set(newValue);
-    this.applyDarkMode();
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('darkMode', String(newValue));
-    }
-  }
-
-  private applyDarkMode(): void {
-    if (typeof document !== 'undefined') {
-      const html = document.documentElement;
-      const body = document.body;
-      if (this.darkMode()) {
-        html.classList.add('dark');
-        body.classList.add('dark');
-      } else {
-        html.classList.remove('dark');
-        body.classList.remove('dark');
-      }
-    }
+    this.appSettings.toggleDarkMode();
   }
 
   toggleLanguage(): void {
-    this.translationService.toggleLanguage();
+    this.appSettings.translationService.toggleLanguage();
   }
 
   t(key: string): string {
-    return this.translationService.t(key);
+    return this.appSettings.t(key);
   }
 
   get menuItems(): MenuItem[] {
