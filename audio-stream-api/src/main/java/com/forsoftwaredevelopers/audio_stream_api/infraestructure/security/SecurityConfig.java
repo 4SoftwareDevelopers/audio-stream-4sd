@@ -20,15 +20,12 @@ import java.util.List;
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final ApiKeyAuthenticationFilter apiKeyAuthenticationFilter;
     private final RateLimitFilter rateLimitFilter;
 
     public SecurityConfig(
             JwtAuthenticationFilter jwtAuthenticationFilter,
-            ApiKeyAuthenticationFilter apiKeyAuthenticationFilter,
             RateLimitFilter rateLimitFilter) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
-        this.apiKeyAuthenticationFilter = apiKeyAuthenticationFilter;
         this.rateLimitFilter = rateLimitFilter;
     }
 
