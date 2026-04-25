@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Repository
@@ -47,13 +48,20 @@ public class JpaVoiceMessageRepositoryAdapter implements VoiceMessageRepository 
 
     @Override
     public VoiceMessage findById(String id) {
-        var entity = voiceMessageJPARepository.findById(id);
-        return entity.map(voiceMessageJpaMapper::toDomainModel).orElse(null);
+        try {
+            var entity = voiceMessageJPARepository.findById(UUID.fromString(id));
+            return entity.map(voiceMessageJpaMapper::toDomainModel).orElse(null);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
     }
 
     @Override
     public void deleteById(String id) {
-        voiceMessageJPARepository.deleteById(id);
+        try {
+            voiceMessageJPARepository.deleteById(UUID.fromString(id));
+        } catch (IllegalArgumentException e) {
+        }
     }
 
     @Override

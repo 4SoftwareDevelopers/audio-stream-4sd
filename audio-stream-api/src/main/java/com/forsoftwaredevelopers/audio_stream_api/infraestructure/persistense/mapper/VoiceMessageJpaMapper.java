@@ -18,7 +18,7 @@ public interface VoiceMessageJpaMapper {
         return id != null ? UUID.fromString(id) : null;
     }
 
-    @Mapping(target = "status", expression = "java(voiceMessage.getStatus().name())", ignore = true)
+    @Mapping(target = "status", expression = "java(voiceMessage.getStatus().name())")
     @Mapping(target = "id", source = "id", qualifiedByName = "stringToUUID")
     VoiceMessageJPAEntity toJpaEntity(VoiceMessage voiceMessage);
 
