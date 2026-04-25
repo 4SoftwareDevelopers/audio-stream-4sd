@@ -20,17 +20,14 @@ import java.util.List;
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final LoginAuthenticationFilter loginAuthenticationFilter;
     private final ApiKeyAuthenticationFilter apiKeyAuthenticationFilter;
     private final RateLimitFilter rateLimitFilter;
 
     public SecurityConfig(
             JwtAuthenticationFilter jwtAuthenticationFilter,
-            LoginAuthenticationFilter loginAuthenticationFilter,
             ApiKeyAuthenticationFilter apiKeyAuthenticationFilter,
             RateLimitFilter rateLimitFilter) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
-        this.loginAuthenticationFilter = loginAuthenticationFilter;
         this.apiKeyAuthenticationFilter = apiKeyAuthenticationFilter;
         this.rateLimitFilter = rateLimitFilter;
     }
@@ -48,8 +45,7 @@ public class SecurityConfig {
                 .anyRequest().permitAll()
             )
             .addFilterBefore(rateLimitFilter, UsernamePasswordAuthenticationFilter.class)
-            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-            .addFilterBefore(apiKeyAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
