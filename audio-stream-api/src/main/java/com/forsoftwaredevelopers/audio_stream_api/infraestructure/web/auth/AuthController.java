@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.forsoftwaredevelopers.audio_stream_api.application.command.AuthResponse;
+import com.forsoftwaredevelopers.audio_stream_api.application.command.LoginRequest;
 import com.forsoftwaredevelopers.audio_stream_api.application.command.RefreshTokenRequest;
 import com.forsoftwaredevelopers.audio_stream_api.application.command.TokenRequest;
 import com.forsoftwaredevelopers.audio_stream_api.domain.result.DomainError;
@@ -32,6 +33,19 @@ public class AuthController {
     public AuthController(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
         this.objectMapper = new ObjectMapper();
+    }
+
+    @PostMapping("/login")
+    public void login(@RequestBody LoginRequest request, HttpServletResponse response) throws IOException {
+        Result<AuthResponse> result = authenticationService.login(
+                request.username(), request.password());
+
+        if (result.isFail()) {
+            writeError(response, result.getErrorOrThrow(), HttpStatus.UNAUTHORIZED);
+            return;
+        }
+
+        writeResponse(response, result.getOrThrow());
     }
 
     @PostMapping("/token")
