@@ -1,5 +1,5 @@
 CREATE TABLE voice_message_audio (
-     voice_message_id VARCHAR(64) PRIMARY KEY,
+     voice_message_id UUID PRIMARY KEY,
      storage_key      TEXT NOT NULL,
      mime_type        VARCHAR(100) NOT NULL DEFAULT 'audio/wav',
      size_bytes       BIGINT NOT NULL,

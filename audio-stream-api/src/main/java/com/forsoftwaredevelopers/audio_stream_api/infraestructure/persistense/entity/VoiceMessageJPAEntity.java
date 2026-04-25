@@ -5,6 +5,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.time.Instant;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
 
@@ -14,7 +15,7 @@ public class VoiceMessageJPAEntity {
 
     @Id
     @Column(nullable = false)
-    private String id;
+    private UUID id;
 
     @Column(name = "stream_id")
     private String streamId;
