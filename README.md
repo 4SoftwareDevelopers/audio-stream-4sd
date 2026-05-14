@@ -7,8 +7,7 @@ Plataforma de streaming de audio en vivo con panel de administración.
 ```
 audio-stream-4sd/
 ├── audio-stream-api/          # Backend API (Spring Boot)
-├── audio-stream-web-admin/    # Panel de administración (Angular)
-└── docs/                      # Documentación del proyecto
+└── audio-stream-web-admin/    # Panel de administración (Angular)
 ```
 
 ---
