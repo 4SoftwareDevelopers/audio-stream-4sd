@@ -77,21 +77,6 @@ npm run build
 
 ---
 
-## Variables de Entorno
-
-### API (`audio-stream-api/src/main/resources/application.properties`)
-```properties
-# Database
-spring.datasource.url=jdbc:postgresql://localhost:5432/audio_stream
-spring.datasource.username=postgres
-spring.datasource.password=your_password
-
-# JWT
-app.jwt.secret=your_jwt_secret_key
-```
-
----
-
 ## Documentación
 
 - `audio-stream-api/AGENTS.md` - Guía de desarrollo del API
