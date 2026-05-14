@@ -1,0 +1,23 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Local project directories
+SSD/
+
+# Project-specific ignores (each project has its own .gitignore)
+# See audio-stream-api/.gitignore and audio-stream-web-admin/.gitignore
+
+# IDE
+.idea/
+.vscode/
+
+# Build outputs
+target/
+dist/
+
+# Dependencies
+node_modules/
+
+# OS files
+*.log
